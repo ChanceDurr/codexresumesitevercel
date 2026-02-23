@@ -41,3 +41,23 @@ Generate responsive WebP variants for the photography gallery:
 ```powershell
 npm run optimize:photos
 ```
+
+## Content Maintenance
+
+The UI is split into data/content modules and components so new sections and logs can be added without editing the
+main app controller.
+
+- Shared content data (tab metadata, highlights, featured items, embedded learning roadmap/log): `src/renderer/content/siteContent.ts`
+- Shared types (including embedded learning log entry shape): `src/renderer/types.ts`
+- Photo caption + responsive asset grouping logic: `src/renderer/lib/photoAssets.ts`
+- UI sections/components: `src/renderer/components/`
+
+### Embedded Learning Log Workflow
+
+To track STM32 / embedded learning progress on the website:
+
+1. Add a new entry to `embeddedLearningLog` in `src/renderer/content/siteContent.ts`
+2. Add/update roadmap milestones in `embeddedRoadmap` as learning focus changes
+3. Promote completed sessions into larger project writeups as needed (planned section is `embeddedProjectIdeas`)
+
+Tip: the active section is synced to the URL hash, so `#embedded` opens the Embedded tab directly.
